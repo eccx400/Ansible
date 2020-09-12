@@ -1,0 +1,38 @@
+#HW1 Ansible Demo
+---
+ - hosts: all
+   become: yes
+   user: root
+
+   tasks:
+    - name: Add epel-repo
+      yum:
+       name: epel-release
+       state: present
+
+    - name: Install Nginx
+      yum:
+       name: nginx
+       state: present
+
+    - name: add site.html file
+      template:
+       src: ./site.html.j2
+       dest: /usr/share/nginx/html/index.html
+
+    - name: Remove firewall on port 8080
+      firewalld:
+       port: 8080/tcp
+       zone: public
+       permanent: yes
+       state: enabled
+    
+    - name: Reload Firewall
+      service:
+        name: firewalld
+        state: restarted 
+
+    - name: Start Nginx
+      service:
+       name: nginx
+       state: started
