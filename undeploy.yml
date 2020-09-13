@@ -1,0 +1,28 @@
+#HW1 Ansible Demo
+---
+- name: Undeploy website on port 8080
+  hosts: all
+  user: root
+  
+  tasks:
+    - name: stop nginx
+      service:
+         name: nginx
+         state: stopped
+       
+    - name: uninstall nginx
+      yum:
+        name: nginx
+        state: absent
+        
+    - name: uninstall epel-release
+      yum:
+        name: epel-release
+        state: absent
+        
+    -name: disable port 8080
+     firewalld:
+        port: 8080/tcp
+        zone: public
+        permanent: yes
+        state: disabled
