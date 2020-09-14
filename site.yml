@@ -20,6 +20,11 @@
        src: ./site.html.j2
        dest: /usr/share/nginx/html/index.html
 
+    - name: Add nginx.conf
+      template:
+        src: ./nginx.conf
+        dest: /etc/nginx/nginx.conf
+
     - name: Remove firewall on port 8080
       firewalld:
        port: 8080/tcp
