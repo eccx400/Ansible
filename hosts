@@ -1,6 +1,5 @@
-[cisco-centos1]
-root@198.18.134.49    # This is a host belonging to the dcloud-servers group
+[cisco_centos1] #This is a group definition
+CentOS1 ansible_host=root@198.18.134.49    # This is a host belonging to the dcloud-servers group
 
-[cisco-centos2]
-root@198.18.134.50    # This is a host belonging to the dcloud-servers group
-
+[cisco_centos2]
+CentOS2 ansible_host=root@198.18.134.50    # This is a host belonging to the dcloud-servers group
